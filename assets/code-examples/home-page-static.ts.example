@@ -1,0 +1,28 @@
+
+@Injectable()
+class HomePage {
+
+  @Query(".pgp-logo")
+  logoElement: HTMLElement;
+
+  constructor() {}
+
+  @Listen("click", ".pgp-logo")
+  onClickLogo(event: any) {
+    // add a class
+    this.logoElement.classList.add("rumble");
+    // set a timer for animations then remove class
+    setTimeout(
+      () =>
+        requestAnimationFrame(() =>
+          this.logoElement.classList.remove("rumble")
+        ),
+      800
+    );
+  }
+}
+
+///
+/// init the page
+///
+initPage<HomePage>(HomePage, []);
