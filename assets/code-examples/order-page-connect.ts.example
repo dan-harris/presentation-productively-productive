@@ -1,0 +1,86 @@
+
+@Injectable()
+class OrderPage {
+
+    ///
+    /// query for components
+    ///
+    @QueryAll("pgp-el-pizza-order-card")
+    pizzaOrderCards: NodeListOf<CustomElement>;
+
+    @Query("pgp-el-order-cart")
+    orderCart: CustomElement;
+
+    ///
+    /// 'bind' to our data...
+    /// essentially wraps object in a proxy so we can
+    /// subscribe to any change
+    ///
+    @Bind<OrderPageState>({ order: null })
+    state: OrderPageState;
+
+    ///
+    /// as an aside... we're using DI within typescript to
+    /// further modularise our client code
+    ///
+    constructor(private readonly httpService: HttpService) {
+        initPageState(this.state);
+        // set an initial state for order cart (not set via razor page)
+        this.updateOrderCart(this.state);
+    }
+
+    ///
+    /// listen to our component custom event
+    /// ('selecting' a pizza order)
+    /// this updates our state, which propagates to any watchers
+    ///
+    @ListenAll("pgp.selected", "pizzaOrderCards")
+    onSelectPizzaOrderCard({ detail }: CustomEvent<PizzaSelectedEvent>) {
+        const { pizza } = detail;
+        this.state.order = {
+            ...this.state.order,
+            pizzaOrders: [
+                ...this.state.order.pizzaOrders,
+                pizza
+            ]
+        };
+    }
+
+    ///
+    /// watch the state 'data' object & execute function on changes
+    /// (the new stae value is passed as a function argument)
+    /// in this case update our API of our current orders
+    ///
+    @Watch<OrderPageState>("state")
+    async updateOrders({ order }: OrderPageState) {
+        await this.httpService.put<Order>(
+            `./order?handler=update`,
+            order
+        );
+    }
+
+    ///
+    /// another watcher, this time we update our order cards 
+    /// with the amount ordered for that particular pizza type
+    ///
+    @Watch<OrderPageState>("state")
+    async updatePizzaOrderCards({ order }: OrderPageState) {
+        this.pizzaOrderCards.forEach(card => {
+            card.amount = getMatchingOrders(card.id, order);
+        });
+    }
+
+    ///
+    /// as above, again update another component with new state
+    ///
+    @Watch<OrderPageState>("state")
+    async updateOrderCart({ order }: OrderPageState) {
+        this.orderCart.orders = order.pizzaOrders;
+    }
+
+}
+
+///
+/// init the page
+///
+initPage<OrderPage>(OrderPage, [HttpService]);

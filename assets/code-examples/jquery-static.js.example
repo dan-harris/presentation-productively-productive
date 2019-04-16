@@ -1,0 +1,36 @@
+
+///
+/// query for our element
+///
+const myElement = $('.my-element');
+
+///
+/// native query for our element
+///
+const myElement = document.querySelector('.my-element');
+
+
+///
+/// add class
+///
+myElement.addClass('make-item-blue');
+
+///
+/// native add class
+///
+myElement.classList.add('make-item-blue');
+
+
+///
+/// handle element event
+///
+myElement.click(doSomething());
+/// or
+myElement.on('click', doSomething());
+
+///
+/// native handle element event
+///
+myElement.onclick(doSomething());
+/// or
+myElement.addEventListener('click', doSomething());
