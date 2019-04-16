@@ -1,0 +1,53 @@
+
+@CustomElement('pgp-el-pizza-order-card')
+class PizzaOrderCardElement extends LitElement {
+
+    ///
+    /// bind to a property
+    /// (re-render on property change
+    /// & reflect property to attribute)
+    ///
+    @Property({ type: Object })
+    pizza: Pizza = {
+        id: 0,
+        name: "",
+        icon: PizzaIcons.PEPPERONI
+    };
+
+    ///
+    /// type is used to serialise
+    ///
+    @Property({ type: Number })
+    amount: number = 0;
+
+    ///
+    /// click handler
+    ///
+    async onClick(event) {
+        this.dispatchEvent(
+            new CustomEvent<PizzaSelectedEvent>('pgp.selected', { 
+                detail: { pizza: this.pizza } 
+            })
+        );
+    }
+
+    constructor() {
+        super();
+    }
+
+    ///
+    /// render the component template
+    ///
+    render() {
+        return html`
+        <style>
+            ...
+        </style>
+
+        <article @click="${this.onClick}">
+            <h3>${this.pizza.name}</h3>
+            <img src="${this.pizza.icon}" />
+        </article>
+        `;
+    }
+}

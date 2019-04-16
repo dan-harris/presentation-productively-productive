@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width initial-scale=1 user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta
+      name="Description"
+      content="danharris.io - portfolio site for Dan Harris - full-stack dev 🤓, grad advocate 👩‍🎓, beer enthusiast 🍺"
+    />
+    <meta name="theme-color" content="#5e548e" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+    <title>danharris.io - aspnet frameworkless</title>
+    <style>
+      @font-face {
+        font-family: 'Fira Code';
+        src: url('./assets/fonts/FiraCode-Light.woff2') format('woff2');
+        font-weight: 300;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'Fira Code';
+        src: url('./assets/fonts/FiraCode-Regular.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'Fira Code';
+        src: url('./assets/fonts/FiraCode-Medium.woff2') format('woff2');
+        font-weight: 500;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'Fira Code';
+        src: url('./assets/fonts/FiraCode-Bold.woff2') format('woff2');
+        font-weight: 700;
+        font-style: normal;
+      }
+      /* quick hack to put fira code as the prism display font */
+      pre.prism-code.builtin-prism-theme {
+        font-family: 'Fira Code';
+      }
+
+      footer {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        color: #231942;
+        font-size: 1.5rem;
+        font-weight: 600;
+        padding: 0.5rem 1.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="./dist/bundle.js"></script>
+    <footer>
+      @danharris_io
+    </footer>
+  </body>
+</html>

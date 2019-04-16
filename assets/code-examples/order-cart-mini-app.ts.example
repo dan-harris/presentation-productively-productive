@@ -1,0 +1,55 @@
+
+@CustomElement("pgp-el-order-cart")
+class OrderCartElement extends LitElement {
+
+    @Property({ type: Object })
+    orders: ReadonlyArray<PizzaOrder> = getPageStateByKey<Order>("order")
+        ? getPageStateByKey<Order>("order").pizzaOrders
+        : [];
+
+    @Property({ attribute: false })
+    isMenuOpen: boolean = false;
+
+    async onClick(event) {
+        this.isMenuOpen = !this.isMenuOpen;
+    }
+
+    ///
+    /// return an array of components 
+    /// (each of these components has its own class, lifecycle .etc)
+    ///
+    getOrderItems(): Array<TemplateResult> {
+        return this.orders.map(
+            pizzaOrder =>
+            html`
+                <pgp-el-order-cart-item
+                .pizza="${pizzaOrder.pizza}"
+                ></pgp-el-order-cart-item>
+            `
+        );
+    }
+
+    getOrderCount(): number {
+        return this.orders.length ? this.orders.length : 0;
+    }
+
+    constructor() {
+        super();
+    }
+
+    render() {
+        return html`
+        <style>
+            ...
+        </style>
+
+        <a @click="${this.onClick}">
+            <img src="pizza-box.svg" />
+            <span>${this.getOrderCount()}</span>
+        </a>
+        <article>
+            ${this.getOrderItems()}
+        </article>
+        `;
+    }
+}
