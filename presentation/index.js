@@ -45,11 +45,6 @@ export default class Presentation extends React.Component {
           <HeaderWithSub subheading="done">get that shite</HeaderWithSub>
         </Slide>
 
-        {/* SLIDE 4 */}
-        <Slide  {...defaultBG}>
-          <iframe style={{ border: 'solid black 0.5rem' }} width="1000" height="560" src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&showinfo=0&autoplay=1" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-        </Slide>
-
         {/* SLIDE 5 */}
         <Slide {...defaultBG}>
           <>
@@ -79,7 +74,27 @@ export default class Presentation extends React.Component {
           </>
         </Slide>
 
-        {/* SLIDE 30 */}
+        {/* SLIDE 6 */}
+        <Slide {...defaultBG}>
+          <HeaderWithSub>zero, zilch, nada</HeaderWithSub>
+        </Slide>
+
+        {/* SLIDE 4 */}
+        <Slide  {...defaultBG}>
+          <iframe style={{ border: 'solid black 0.5rem' }} width="1000" height="560" src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&showinfo=0&autoplay=1" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+        </Slide>
+
+        {/* SLIDE 7 */}
+        <Slide {...defaultBG}>
+          <HeaderWithSub>slack reminders</HeaderWithSub>
+        </Slide>
+
+        {/* SLIDE 8 */}
+        <Slide {...defaultBG}>
+          <HeaderWithSub subheading="do it">chrome profiles</HeaderWithSub>
+        </Slide>
+
+        {/* SLIDE 9 */}
         <Slide {...defaultBG}>
           <HeaderWithSub>whaddya think?</HeaderWithSub>
         </Slide>
